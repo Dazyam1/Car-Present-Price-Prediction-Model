@@ -3,7 +3,7 @@ import pandas as pd
 import pickle 
 
 # Load the saved data using pickel
-model_path = 'C:/Users/user/Documents/Data Science/Models/Diabetes and Car/Car/Car Prediction Model 1.sav'
+model_path = 'Car Prediction Model 1.sav'
 with open (model_path, 'rb')as file:
     model = pickle.load(file)
 
