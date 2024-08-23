@@ -3,20 +3,25 @@ import pandas as pd
 import pickle 
 
 # Load the saved data using pickel
+# Load the saved model using pickle with error handling
+model = None  # Initialize model as None
 model_path = 'Car Prediction Model 1.sav'
+
 try:
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
 except FileNotFoundError:
     st.error("Model file not found. Please check the file path.")
+except ModuleNotFoundError as e:
+    st.error(f"Missing module: {e}. Please ensure all dependencies are installed.")
 except Exception as e:
     st.error(f"An error occurred while loading the model: {e}")
 
-
-
-# Initialize the input fields in Streamlit
-st.title('Car price Prediction Model')
-st.write('Input Some Information to Predict the price of your vehicle')
+# Ensure the model is loaded before proceeding
+if model is not None:
+    # Initialize the input fields in Streamlit
+    st.title('Car Price Prediction Model')
+    st.write('Input Some Information to Predict the Price of Your Vehicle')
 
 # Create Sidebar to input details or features
 st.sidebar.title('Input The Featues Of Your Car')
