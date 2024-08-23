@@ -4,8 +4,13 @@ import pickle
 
 # Load the saved data using pickel
 model_path = 'Car Prediction Model 1.sav'
-with open (model_path, 'rb')as file:
-    model = pickle.load(file)
+try:
+    with open(model_path, 'rb') as file:
+        model = pickle.load(file)
+except FileNotFoundError:
+    st.error("Model file not found. Please check the file path.")
+except Exception as e:
+    st.error(f"An error occurred while loading the model: {e}")
 
 
 
